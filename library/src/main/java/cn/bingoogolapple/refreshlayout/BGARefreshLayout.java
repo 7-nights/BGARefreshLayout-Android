@@ -749,6 +749,12 @@ public class BGARefreshLayout extends LinearLayout {
             public void onAnimationUpdate(ValueAnimator animation) {
                 int paddingTop = (int) animation.getAnimatedValue();
                 mWholeHeaderView.setPadding(0, paddingTop, 0, 0);
+                float scale = 1 - paddingTop * 1.0f / mMinWholeHeaderViewPaddingTop;
+                int refreshDiffY = paddingTop - mMinWholeHeaderViewPaddingTop;
+                mRefreshViewHolder.handleScale(scale, refreshDiffY);
+                if (mRefreshScaleDelegate != null) {
+                    mRefreshScaleDelegate.onRefreshScaleChanged(scale, refreshDiffY);
+                }
             }
         });
         animator.start();
@@ -765,6 +771,12 @@ public class BGARefreshLayout extends LinearLayout {
             public void onAnimationUpdate(ValueAnimator animation) {
                 int paddingTop = (int) animation.getAnimatedValue();
                 mWholeHeaderView.setPadding(0, paddingTop, 0, 0);
+                float scale = 1 - paddingTop * 1.0f / mMinWholeHeaderViewPaddingTop;
+                int refreshDiffY = paddingTop - mMinWholeHeaderViewPaddingTop;
+                mRefreshViewHolder.handleScale(scale, refreshDiffY);
+                if (mRefreshScaleDelegate != null) {
+                    mRefreshScaleDelegate.onRefreshScaleChanged(scale, refreshDiffY);
+                }
             }
         });
         animator.start();
